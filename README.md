@@ -16,5 +16,7 @@ specific_referer (WIP / optional) : Adds a specific referer link, works for bloc
 ## Thank yous :
 
 The IPTV peepz that were involved in making this possible (special thanks to Nintendocustom / Dum4G)
+
 The testers
+
 The Streamlink members and contributors for this amazing tool that is.
