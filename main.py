@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return "Hello World !"
+    return "This program permits you to get direct access to streams by using Streamlink. Alternative link : https://iptv--iptv.repl.co/streamlink?url=*insert url*. Enjoy ! LaneSh4d0w."
 
 @app.route('/iptv-query')
 def home():
@@ -17,8 +17,6 @@ def home():
     elif request.args.get('streaming-ip') != "":
       valid=validators.url(request.args.get('streaming-ip'));
       if valid == True:
-        if "specific_referer" in request.args:
-          streamlink.Streamlink.set_option(streamlink, "http-headers", "Referer=" + request.args.get('specific_referer'))
         if "quality" in request.args:
           if request.args.get("quality") == "unsure":
             try:
