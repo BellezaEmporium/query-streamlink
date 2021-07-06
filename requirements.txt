@@ -1,4 +1,3 @@
-python==3.8
 flask==2.0.1
 streamlink==2.2.0
 validators==0.18.2
