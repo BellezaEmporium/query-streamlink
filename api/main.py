@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from flask import Flask, request, redirect, send_file
 import validators
 from api import Fetch
@@ -64,8 +65,9 @@ def query_hanlder(args, api):
             return api_formated(message, api)
 
         quality = args.get("quality")
-        stream_obj = Fetch(query, quality).filtered_streams()
-        return api_formated(stream_obj, api, query)
+        stream_obj = Fetch(query, quality)
+        streams = stream_obj.filtered_streams()
+        return api_formated(streams, api, query)
     else:
         message = "No queries provided. Nothing to do."
         return api_formated(message, api)
