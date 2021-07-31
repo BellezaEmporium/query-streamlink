@@ -2,3 +2,4 @@ flask==2.0.1
 gunicorn==20.1.0
 streamlink==2.2.0
 validators==0.18.2
+Flask-Limiter==1.4
