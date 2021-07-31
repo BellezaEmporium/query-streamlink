@@ -82,7 +82,7 @@ def query_hanlder(args, api):
 
 @app.route("/")
 def index():
-    return "This program permits you to get direct access to streams by using Streamlink. Alternative link : https://iptv--iptv.repl.co/streamlink?url=*insert url*. Enjoy ! LaneSh4d0w."
+    return "This program permits you to get direct access to streams by using Streamlink. Enjoy ! LaneSh4d0w."
 
 
 @app.route("/iptv-query")
@@ -103,6 +103,5 @@ def home():
 def api():
     return query_hanlder(request.args, True)
 
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8888)
+if __name__ == '__main__':
+    app.run(threaded=True, port=5000)
