@@ -80,12 +80,12 @@ def query_hanlder(args, api):
         return api_formated(message, api)
 
 
-@app.route("/")
+@app.route("/", methods=['GET'])
 def index():
     return "This program permits you to get direct access to streams by using Streamlink. Enjoy ! LaneSh4d0w."
 
 
-@app.route("/iptv-query")
+@app.route("/iptv-query", methods=['GET'])
 @limiter.limit("30 per minute")
 @limiter.limit("1 per second")
 def home():
@@ -97,7 +97,7 @@ def home():
     else:
         return response  
 
-@app.route("/api")
+@app.route("/api", methods=['GET'])
 @limiter.limit("30 per minute")
 @limiter.limit("1 per second")
 def api():
