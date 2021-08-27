@@ -86,8 +86,8 @@ def index():
 
 
 @app.route("/iptv-query", methods=['GET'])
-@limiter.limit("30 per minute")
-@limiter.limit("1 per second")
+@limiter.limit("20/minute")
+@limiter.limit("1/second")
 def home():
     response = query_hanlder(request.args, False)
     if response.startswith("#EXTM3U"):
@@ -98,8 +98,8 @@ def home():
         return response  
 
 @app.route("/api", methods=['GET'])
-@limiter.limit("30 per minute")
-@limiter.limit("1 per second")
+@limiter.limit("20/minute")
+@limiter.limit("1/second")
 def api():
     return query_hanlder(request.args, True)
 
