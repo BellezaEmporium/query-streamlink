@@ -105,3 +105,7 @@ def api():
 
 if __name__ == '__main__':
     app.run(threaded=True, port=5000)
+
+@app.errorhandler(429)
+def ratelimit_handler(e):
+    return "Whoa there ! I know you like that service, but there's no need to spam me ! Let the server breathe a little bit (RATE LIMIT EXCEEDED)"
