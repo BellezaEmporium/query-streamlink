@@ -58,12 +58,12 @@ def api_formated(output, api, query=""):
     return output
 
 
-def query_hanlder(args, api):
+def query_handler(args, api):
     """Checks and tests arguments before serving request"""
     if args:
         query = args.get("streaming-ip")
         if not query:
-            message = "No streaming IP found. Reason: streaming-ip string is empty"
+            message = "streaming-ip string is empty"
             return api_formated(message, api)
 
         valid = validators.url(query)
@@ -82,14 +82,14 @@ def query_hanlder(args, api):
 
 @app.route("/", methods=['GET'])
 def index():
-    return "This program permits you to get direct access to streams by using Streamlink. Enjoy ! LaneSh4d0w."
+    return "This program permits you to get direct access to streams by using Streamlink. Enjoy ! LaneSh4d0w. Special thanks to Keystroke for the API usage."
 
 
 @app.route("/iptv-query", methods=['GET'])
 @limiter.limit("20/minute")
 @limiter.limit("1/second")
 def home():
-    response = query_hanlder(request.args, False)
+    response = query_handler(request.args, False)
     if response.startswith("#EXTM3U"):
         return send_file("stream.m3u8")
     elif response.startswith("http"):
@@ -101,7 +101,7 @@ def home():
 @limiter.limit("20/minute")
 @limiter.limit("1/second")
 def api():
-    return query_hanlder(request.args, True)
+    return query_handler(request.args, True)
 
 if __name__ == '__main__':
     app.run(threaded=True, port=5000)
