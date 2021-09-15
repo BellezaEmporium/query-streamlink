@@ -1,10 +1,6 @@
 import streamlink
 from streamlink import (
-    StreamError,
-    StreamlinkError,
     PluginError,
-    NoPluginError,
-    NoStreamsError,
 )
 
 
@@ -32,9 +28,9 @@ class Fetch:
             # FIXME has issues if a channel is hosting another on Twitch
             links = streamlink.streams(self.query)
             res = list(links.keys())
-            return (links, res)
+            return links, res
         except Exception:
-            # returnes exceptions raised by streamlink
+            # returns exceptions raised by streamlink
             raise
 
     def filtered_streams(self):
@@ -56,15 +52,10 @@ class Fetch:
         except TypeError:
             return payload
 
-        # TODO: find a more elegant solution to deal with 'best' and 'worst'
         if "best" in self.qualities:
-            self.qualities = [
-                resolutions[-3:-2][0] if i == "best" else i for i in self.qualities
-            ]
-        if "worst" in self.qualities:
-            self.qualities = [
-                resolutions[1::-2][0] if i == "worst" else i for i in self.qualities
-            ]
+            next((x for x in res_str if x == "best"), None)
+        elif "worst" in self.qualities:
+            next((x for x in res_str if x == "worst"), None)
 
         for q in self.qualities:
             if q not in resolutions:

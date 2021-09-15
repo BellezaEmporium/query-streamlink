@@ -13,7 +13,7 @@ limiter = Limiter(
 )
 
 
-def make_m3u8(output, query):
+def make_m3u8(output):
     """Creates m3u file and string
     (output: dict, query: str)
     """
@@ -45,7 +45,7 @@ def make_m3u8(output, query):
     return link_str
 
 
-def api_formated(output, api, query=""):
+def api_formatted(output, api):
     """Formats the output to json if the endpoint is /api"""
     if api:
         if type(output) == dict:
@@ -54,7 +54,7 @@ def api_formated(output, api, query=""):
     if type(output) == dict:
         if len(output) == 1:
             return next(iter(output.values()))
-        return make_m3u8(output, query)
+        return make_m3u8(output)
     return output
 
 
@@ -64,20 +64,29 @@ def query_handler(args, api):
         query = args.get("streaming-ip")
         if not query:
             message = "streaming-ip string is empty"
-            return api_formated(message, api)
+            return api_formatted(message, api)
 
         valid = validators.url(query)
         if not valid:
             message = "The URL you've entered is not valid."
-            return api_formated(message, api)
+            return api_formatted(message, api)
+
+        if query.__contains__("opencaster"):
+            message = "Those types of links are origin-locked. Solution coming soon."
+            return api_formatted(message, api)
 
         quality = args.get("quality")
+        if quality and quality == "":
+            message = "Empty quality string"
+            return api_formatted(message, api)
+        elif not quality:
+            quality = "best"
         stream_obj = Fetch(query, quality)
         streams = stream_obj.filtered_streams()
-        return api_formated(streams, api, query)
+        return api_formatted(streams, api)
     else:
         message = "No queries provided. Nothing to do."
-        return api_formated(message, api)
+        return api_formatted(message, api)
 
 
 @app.route("/", methods=['GET'])
@@ -95,7 +104,8 @@ def home():
     elif response.startswith("http"):
         return redirect(response)
     else:
-        return response  
+        return response
+
 
 @app.route("/api", methods=['GET'])
 @limiter.limit("20/minute")
@@ -103,9 +113,10 @@ def home():
 def api():
     return query_handler(request.args, True)
 
+@app.errorhandler(429)
+def ratelimit_handler():
+    return "Whoa there ! I know you like that service, but there's no need to spam me ! Let the server breathe a little bit (RATE LIMIT EXCEEDED)"
+
+
 if __name__ == '__main__':
     app.run(threaded=True, port=5000)
-
-@app.errorhandler(429)
-def ratelimit_handler(e):
-    return "Whoa there ! I know you like that service, but there's no need to spam me ! Let the server breathe a little bit (RATE LIMIT EXCEEDED)"
