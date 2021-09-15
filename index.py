@@ -71,16 +71,11 @@ def query_handler(args, api):
             message = "The URL you've entered is not valid."
             return api_formatted(message, api)
 
-        if query.__contains__("opencaster"):
-            message = "Those types of links are origin-locked. Solution coming soon."
-            return api_formatted(message, api)
-
         quality = args.get("quality")
-        if quality and quality == "":
+        if quality == "":
             message = "Empty quality string"
             return api_formatted(message, api)
-        elif not quality:
-            quality = "best"
+
         stream_obj = Fetch(query, quality)
         streams = stream_obj.filtered_streams()
         return api_formatted(streams, api)
@@ -113,8 +108,9 @@ def home():
 def api():
     return query_handler(request.args, True)
 
+
 @app.errorhandler(429)
-def ratelimit_handler():
+def ratelimit_handler(e):
     return "Whoa there ! I know you like that service, but there's no need to spam me ! Let the server breathe a little bit (RATE LIMIT EXCEEDED)"
 
 

@@ -1,6 +1,6 @@
 import streamlink
 from streamlink import (
-    PluginError,
+    PluginError
 )
 
 
@@ -25,7 +25,6 @@ class Fetch:
         Returns: (links, resolution), Error string
         """
         try:
-            # FIXME has issues if a channel is hosting another on Twitch
             links = streamlink.streams(self.query)
             res = list(links.keys())
             return links, res
