@@ -7,7 +7,7 @@ This program works by asking Streamlink, based on the base URL you're giving him
 
 ### Supported websites :
 
-Basically any website that [!Streamlink](https://streamlink.github.io/plugin_matrix.html) supports (beware of some geo-locked streams for some services)
+Basically any website that [Streamlink](https://streamlink.github.io/plugin_matrix.html) supports (beware of some geo-locked streams for some services)
 
 ## Different queries available :
 
