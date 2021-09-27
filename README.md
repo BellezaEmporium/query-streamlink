@@ -36,4 +36,4 @@ Here are the actual recensed websites that uses query-streamlink on the Internet
 
 [Link-A-Stream - Hosted website (keystroke3) (WIP)](https://linkastream.co/)
 
-[IPTv - DCT EU (dct-infra)](https://iptv.dc-team.com/)
+[IPTv - DCT EU (dct-infra)](https://iptv.dc-team.com/) - Usage : https://iptv.dc-team.com/query?url= *insert url*
