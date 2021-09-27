@@ -26,7 +26,7 @@ quality (optional) : The streaming quality you want to watch in. No quality spec
 - The Streamlink members and contributors for this amazing tool that is.
 
 
-### Available websites (as of 26/09/2021)
+### Available websites (as of 27/09/2021)
 
 Here are the actual recensed websites that uses query-streamlink on the Internet :
 
@@ -35,3 +35,5 @@ Here are the actual recensed websites that uses query-streamlink on the Internet
 [Query-Streamlink - Heroku US (LaneSh4d0w)](https://query-streamlink-us.herokuapp.com/)
 
 [Link-A-Stream - Hosted website (keystroke3) (WIP)](https://linkastream.co/)
+
+[IPTv - DCT EU (dct-infra)](https://iptv.dc-team.com/)
