@@ -17,7 +17,7 @@ quality (optional) : The streaming quality you want to watch in. No quality spec
 
 ## Thank yous :
 
-- keystroke3 for the support and rework of the application.
+-  [@keystroke3](https://github.com/keystroke3) for the support and rework of the application (He's looking for a full-time job ! If anyone's interested, contact him directly).
 
 - The IPTV peepz that were involved in making this possible (special thanks to Nintendocustom / Dum4G)
 
