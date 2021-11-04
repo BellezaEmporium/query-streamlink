@@ -1,17 +1,17 @@
+[build-system]
+build-backend = "poetry.masonry.api"
+requires = ["poetry>=0.12"]
+
+[tool]
 [tool.poetry]
+authors = ["Your Name <you@example.com>"]
+description = ""
 name = "repl_python3_query-streamlink"
 version = "0.1.0"
-description = ""
-authors = ["Your Name <you@example.com>"]
-
 [tool.poetry.dependencies]
-python = "^3.9.6"
 flask = "^2.0.1"
+python = "^3.8"
 streamlink = "^2.2.0"
 validators = "^0.18.2"
-
+Flask-Limiter = "^1.4"
 [tool.poetry.dev-dependencies]
-
-[build-system]
-requires = ["poetry>=0.12"]
-build-backend = "poetry.masonry.api"
