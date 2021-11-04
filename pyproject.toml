@@ -4,8 +4,8 @@ requires = ["poetry>=0.12"]
 
 [tool]
 [tool.poetry]
-authors = ["Your Name <you@example.com>"]
-description = ""
+authors = ["LaneSh4d0w <lanesh4d0w@gmail.com>"]
+description = "A tool made to give streams from Streamlink"
 name = "repl_python3_query-streamlink"
 version = "0.1.0"
 [tool.poetry.dependencies]
