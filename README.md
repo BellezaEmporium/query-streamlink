@@ -30,6 +30,8 @@ quality (optional) : The streaming quality you want to watch in. No quality spec
 
 Here are the actual recensed websites that uses query-streamlink on the Internet :
 
+[Query-Streamlink - repl.it (LaneSh4d0w)](https://query-streamlink.lanesh4d0w.repl.co/)
+
 [Query-Streamlink - Heroku EU (LaneSh4d0w)](https://query-streamlink.herokuapp.com/)
 
 [Query-Streamlink - Heroku US (LaneSh4d0w)](https://query-streamlink-us.herokuapp.com/)
