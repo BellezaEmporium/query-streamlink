@@ -1,6 +1,14 @@
 # query-streamlink
 A Python webapp that is destined to spit out links given by all sources supported by Streamlink.
 
+## How to load the program :
+
+Locally :
+```python main.py```
+
+Remote (repl / heroku etc...) :
+See if they have specific configurations, but a simple fork of the program using your account is sufficient to make it work !
+
 ## How it works :
 
 This program works by asking Streamlink, based on the base URL you're giving him, an URL that is readable on (almost !) all known players to this date. The service acts like a redirector for the website you've chosen.
