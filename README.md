@@ -1,5 +1,6 @@
 # query-streamlink
-A Python webapp that is destined to spit out links given by all sources supported by Streamlink.
+
+A Python webapp that is designed to redirect the end user to the stream they want, backed up by Streamlink.
 
 ## How to load the program :
 
@@ -11,11 +12,11 @@ See if they have specific configurations, but a simple fork of the program using
 
 ## How it works :
 
-This program works by asking Streamlink, based on the base URL you're giving him, an URL that is readable on (almost !) all known players to this date. The service acts like a redirector for the website you've chosen.
+This program works by asking Streamlink, based on the URL you gave, an URL that can be used for (almost !) all known players to this date. query-streamlink simply acts like an intermediary/redirector between the end-user and Streamlink.
 
 ### Supported websites :
 
-Basically any website that [Streamlink](https://streamlink.github.io/plugin_matrix.html) supports (beware of some geo-locked streams for some services)
+Basically any website that [Streamlink](https://streamlink.github.io/plugin_matrix.html) supports (beware of geo-location issues for some services)
 
 ## Different queries available :
 
