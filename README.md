@@ -35,7 +35,7 @@ quality (optional) : The streaming quality you want to watch in. No quality spec
 - The Streamlink members and contributors for this amazing tool that is.
 
 
-### Available websites (as of 27/09/2021)
+### Available websites (as of 08/11/2021)
 
 Here are the actual recensed websites that uses query-streamlink on the Internet :
 
@@ -47,4 +47,4 @@ Here are the actual recensed websites that uses query-streamlink on the Internet
 
 [Link-A-Stream - Hosted website (keystroke3) (WIP)](https://linkastream.co/)
 
-[FullSpeed - DCT EU (dct-infra)](http://free.fullspeed.tv/) - Usage : http://free.fullspeed.tv/query?url= *insert url*
+[FullSpeed - DCT EU (dct-infra)](http://free.fullspeed.tv/)
