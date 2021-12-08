@@ -1,5 +1,5 @@
-flask==2.0.1
+flask==2.0.2
 gunicorn==20.1.0
-streamlink==2.4.0
+streamlink==3.0.3
 validators==0.18.2
 Flask-Limiter==1.4
