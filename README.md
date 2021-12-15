@@ -2,6 +2,12 @@
 
 A Python webapp that is designed to redirect the end user to the stream they want, backed up by Streamlink.
 
+## Donating to the streamlink project
+
+This program is possible thanks to Streamlink.
+
+To support them, please make a donation to their [Open Collective page](https://opencollective.com/streamlink)
+
 ## How to load the program :
 
 Locally :
