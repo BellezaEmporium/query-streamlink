@@ -98,6 +98,10 @@ def home():
         return send_file("stream.m3u8")
     elif response.startswith("http"):
         return redirect(response)
+    elif response.startswith("Unable to open URL: https://www.youtube.com/"):
+        return "YouTube is not supported at this time because of CAPTCHAs."
+    elif response.startswith("Unable to open URL: http://www.youtube.com/"):
+        return "YouTube is not supported at this time because of CAPTCHAs."
     else:
         return response
 
