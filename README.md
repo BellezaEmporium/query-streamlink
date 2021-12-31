@@ -10,15 +10,16 @@ To support them, please make a donation to their [Open Collective page](https://
 
 ## How to load the program :
 
-Locally :
+- Locally :
 ```python main.py```
 
-Remote (repl / heroku etc...) :
+- Remote (repl / heroku etc...) :
 See if they have specific configurations, but a simple fork of the program using your account is sufficient to make it work !
 
 ## How it works :
 
-This program works by asking Streamlink, based on the URL you gave, an URL that can be used for (almost !) all known players to this date. query-streamlink simply acts like an intermediary/redirector between the end-user and Streamlink.
+This program works by asking Streamlink, based on the URL you gave, an URL that can be used for (almost !) all known players to this date. 
+query-streamlink simply acts like an intermediary/redirector between the end-user and Streamlink.
 
 ### Supported websites :
 
@@ -26,13 +27,13 @@ Basically any website that [Streamlink](https://streamlink.github.io/plugin_matr
 
 ## Different queries available :
 
-streaming-ip (mandatory) : The URL of the stream you need the link to.
+- streaming-ip (mandatory) : The URL of the stream you need the link to.
 
-quality (optional) : The streaming quality you want to watch in. No quality specified results in automatically choosing the best quality available for this stream.
+- quality (optional) : The streaming quality you want to watch in. No quality specified results in automatically choosing the best quality available for this stream. Specifying "unsure" gives you all the available qualities for the stream.
 
 ## Thank yous :
 
--  [@keystroke3](https://github.com/keystroke3) for the support and rework of the application (He's looking for a full-time job ! If anyone's interested, contact him directly).
+-  [@keystroke3](https://github.com/keystroke3) for the support and rework of the application.
 
 - The IPTV peepz that were involved in making this possible (special thanks to Nintendocustom / Dum4G)
 
