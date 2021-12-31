@@ -1,6 +1,6 @@
 # query-streamlink
 
-Une appli Python destinée à renvoyer à l'utilisateur final le flux voulu, fonctionnant avec Streamlink.
+Une application sous Python destinée à renvoyer à l'utilisateur final le flux vidéo voulu, fonctionnant avec Streamlink.
 
 ## Donner au projet Streamlink
 
@@ -34,7 +34,7 @@ quality (optionnel) : La qualité voulue pour ce flux. Ne pas renseigner la qual
 
 ## Remerciements :
 
--  [@keystroke3](https://github.com/keystroke3) pour la refonte du programme, et de la création de l'API (Il recherche d'ailleurs un job à plein temps ! Si quelqu'un est intéressé, veuillez le contacter directement;).
+-  [@keystroke3](https://github.com/keystroke3) pour la refonte du programme, et de la création de l'API.
 
 - Le groupe @iptv-org pour les premières implémentations et conseils (remerciements spéciaux à Nintendocustom / Dum4G)
 
