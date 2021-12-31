@@ -2,7 +2,7 @@
 
 Una aplicación python destinada a redireccionar al usuario final en el flujo de video deseado, funcionando con Streamlink.
 
-## Contribuir al projecto Streamlink
+## Contribuir al proyecto Streamlink
 
 Este programa es posible gracias a Streamlink.
 
