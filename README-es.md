@@ -1,12 +1,12 @@
 # query-streamlink
 
-Un aplicacion Python destinado a redirrecionar el usuario final en el flujo de vídeo querido, functionando con Streamlink.
+Una aplicación python destinada a redireccionar al usuario final en el flujo de video deseado, funcionando con Streamlink.
 
 ## Contribuir al projecto Streamlink
 
 Este programa es posible gracias a Streamlink.
 
-Para contribuir en este projecto, por favor hace un donacion en su [pagina Open Collective](https://opencollective.com/streamlink)
+Para contribuir en este proyecto, por favor haz una donación en su [página Open Collective](https://opencollective.com/streamlink)
 
 ## Como iniciar este programa :
 
@@ -15,36 +15,37 @@ Para contribuir en este projecto, por favor hace un donacion en su [pagina Open 
 
 - Servidor (repl / heroku etc...) :
 
-Un fork del programa debe ser suficiente para hacerlo functionar, sin embargo, verifica con el servidor por configuraciones specificas.
+Un fork del programa debe ser suficiente para hacerlo funcionar, sin embargo, verifica con el servidor las configuraciones específicas.
 
-## How it works :
+## Como eso functiona :
 
-This program works by asking Streamlink, based on the URL you gave, an URL that can be used for (almost !) all known players to this date. query-streamlink simply acts like an intermediary/redirector between the end-user and Streamlink.
+Este programa functiona por preguntar Streamlink, y basado en la URL, repueste con una URL de flujo video que puede utilisar en (casi !) todos los reproductores de video conocido ahora.
+query-streamlink solo es un intermediario entre el usuario final y Streamlink.
 
-### Supported websites :
+### Sitios soportados :
 
-Basically any website that [Streamlink](https://streamlink.github.io/plugin_matrix.html) supports (beware of geo-location issues for some services)
+Practicamente todos los sitios que [Streamlink](https://streamlink.github.io/plugin_matrix.html) soporte (atencion con los problemas de restriccion geografica con unas servicios)
 
-## Different queries available :
+## Opciones diferentes :
 
-streaming-ip (mandatory) : The URL of the stream you need the link to.
+streaming-ip (mandatorio) : La URL del stream que quiere ver.
 
-quality (optional) : The streaming quality you want to watch in. No quality specified results in automatically choosing the best quality available for this stream.
+quality (opcional) : La calidad del stream en cualquier quieres verlo. No calidad especificado va a escoger la mejor calidad disponible. Especifiar "unsure" va a mostrar todas las calidades disponibles.
 
-## Thank yous :
+## Gracias :
 
--  [@keystroke3](https://github.com/keystroke3) for the support and rework of the application (He's looking for a full-time job ! If anyone's interested, contact him directly).
+-  [@keystroke3](https://github.com/keystroke3) por el soporte y el rehacimiento del aplicacion.
 
-- The IPTV peepz that were involved in making this possible (special thanks to Nintendocustom / Dum4G)
+- Las personas del grupo @iptv-org que eran implícito (especialmente Nintendocustom / Dum4G)
 
-- The testers
+- Los probadores
 
-- The Streamlink members and contributors for this amazing tool that is.
+- Los miembros y contribudores de Streamlink para este magnificente programa.
 
 
-### Available websites (as of 22/11/2021)
+### Sitios disponibles (al 22/11/2021)
 
-Here are the actual recensed websites that uses query-streamlink on the Internet :
+Aqui son las sitios reconocidos que usan query-streamlink en el Internet :
 
 [Link-A-Stream - Hosted website (keystroke3) (WIP)](https://linkastream.co/)
 
