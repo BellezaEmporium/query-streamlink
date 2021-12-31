@@ -17,9 +17,9 @@ Para contribuir en este proyecto, por favor haz una donación en su [página Ope
 
 Un fork del programa debe ser suficiente para hacerlo funcionar, sin embargo, verifica con el servidor las configuraciones específicas.
 
-## Como eso functiona :
+## Como eso funciona :
 
-Este programa functiona por preguntar Streamlink, y basado en la URL, repueste con una URL de flujo video que puede utilisar en (casi !) todos los reproductores de video conocido ahora.
+Este programa funciona por preguntar Streamlink, y basado en la URL, repueste con una URL de flujo video que puede utilisar en (casi !) todos los reproductores de video conocido ahora.
 query-streamlink solo es un intermediario entre el usuario final y Streamlink.
 
 ### Sitios soportados :
