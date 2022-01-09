@@ -1,1 +1,1 @@
-web: gunicorn --workers 1 main:app
+web: gunicorn myproject.wsgi
