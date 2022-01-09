@@ -1,16 +1,71 @@
-#!/usr/bin/env python
-from flask import Flask, request, redirect, send_file
-from flask_limiter import Limiter
-from flask_limiter.util import get_remote_address
+from ninja import NinjaAPI
+from django.shortcuts import redirect
+
+app = NinjaAPI()
+
 import validators
-from api import Fetch
-
-app = Flask(__name__)
-
-limiter = Limiter(
-    app,
-    key_func=get_remote_address
+import streamlink
+from streamlink import (
+    PluginError
 )
+
+
+class Fetch:
+    """
+    Gets data from host, filters it and returns streams
+    (query: str, quality: str,list,tuple)
+    """
+
+    def __init__(self, query, quality):
+        self.query = query
+        if not quality:
+            quality = "best"
+        if "," in quality:
+            self.qualities = quality.split(",")
+        else:
+            self.qualities = [quality]
+
+    def get_streams(self):
+        """
+        Get data streams and resolutions
+        Returns: (links, resolution), Error string
+        """
+        try:
+            links = streamlink.streams(self.query)
+            res = list(links.keys())
+            return links, res
+        except Exception:
+            # returns exceptions raised by streamlink
+            raise
+
+    def filtered_streams(self):
+        """
+        Filter streams according to specified quality.
+        Default quality: best
+        Returns: {quality: stream_url}
+        """
+        try:
+            payload = self.get_streams()
+            streams, resolutions = payload
+            if not streams:
+                raise ValueError
+            res_str = ",".join(resolutions)
+        except PluginError as pe:
+            return str(pe)
+        except ValueError:
+            return f"Could not get the link, Streamlink couldn't read {self.query}"
+        except TypeError:
+            return payload
+
+        if "best" in self.qualities:
+            next((x for x in res_str if x == "best"), None)
+        elif "worst" in self.qualities:
+            next((x for x in res_str if x == "worst"), None)
+
+        for q in self.qualities:
+            if q not in resolutions:
+                return f"Invalid quality {q}. Available qualities are: {res_str}"
+        return {quality: streams[quality].url for quality in self.qualities}
 
 
 def make_m3u8(output):
@@ -61,7 +116,7 @@ def api_formatted(output, api):
 def query_handler(args, api):
     """Checks and tests arguments before serving request"""
     if args:
-        query = args.get("streaming-ip")
+        query = args[0]
         if not query:
             message = "streaming-ip string is empty"
             return api_formatted(message, api)
@@ -71,7 +126,7 @@ def query_handler(args, api):
             message = "The URL you've entered is not valid."
             return api_formatted(message, api)
 
-        quality = args.get("quality")
+        quality = args[1]
         if quality == "":
             message = "Empty quality string"
             return api_formatted(message, api)
@@ -84,16 +139,15 @@ def query_handler(args, api):
         return api_formatted(message, api)
 
 
-@app.route("/", methods=['GET'])
-def index():
+@app.get("/")
+def index(request):
     return "This program permits you to get direct access to streams by using Streamlink.\nIf you have a link that needs to be treated, from this webpage, add /iptv-query?streaming-ip= *your URL*.\nNote that it will work only on Streamlink-supported websites.\nEnjoy ! LaneSh4d0w. Special thanks to Keystroke for the API usage."
 
 
-@app.route("/iptv-query", methods=['GET'])
-@limiter.limit("20/minute")
-@limiter.limit("1/second")
-def home():
-    response = query_handler(request.args, False)
+@app.get("/query")
+def home(request, url: str, quality: str = None):
+    answer = [url, quality]
+    response = query_handler(answer, False)
     if response.startswith("#EXTM3U"):
         return send_file("stream.m3u8")
     elif response.startswith("http"):
@@ -102,17 +156,9 @@ def home():
         return response
 
 
-@app.route("/api", methods=['GET'])
-@limiter.limit("20/minute")
-@limiter.limit("1/second")
-def api():
-    return query_handler(request.args, True)
-
-
-@app.errorhandler(429)
-def ratelimit_handler(e):
-    return "Whoa there ! I know you like that service, but there's no need to spam me ! Let the server breathe a little bit (RATE LIMIT EXCEEDED)"
-
+@app.get("/api")
+def api(request, url: str):
+    return query_handler(url, True)
 
 if __name__ == '__main__':
     app.run(threaded=False, port=5000)
