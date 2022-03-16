@@ -3,6 +3,8 @@ A Python webapp that is destined to spit out links given by all sources supporte
 
 ## Language / Langue / Idioma
 
-[English](./README-en.md)
-[Français](./README-fr.md)
-[Espanol](./README-es.md)
+- [English](./README-en.md) (README reviewed and modified by LS, T, DI)
+
+- [Français](./README-fr.md) (README modified by LS)
+
+- [Espanol](./README-es.md) (README reviewed by DG, modified by LS)
