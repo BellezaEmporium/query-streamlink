@@ -16,14 +16,13 @@ class Fetch:
                 return "No streams have been found."
             else:
                 for quality, link in streams:
-                    # read HLSStream as "string" even if it isn't conventional
-                    string_link = str(link)
-                    # specific streann / DASH fix
-                    if "streannlive" or "DASHStream" in string_link:
+                    # Suggest that if there's no multiple qualities (live),
+                    # give manifest (master) URL.
+                    if "live" not in quality:
                         return link.to_manifest_url()
                     else:
                         return link.to_url()
         except ValueError as ex:
-            return f"Could not get the link, Streamlink couldn't read {query}, for this reason : {ex}"
+            return f"Streamlink couldn't read {query}, for this reason : {ex}"
         except PluginError as pe:
             return str(pe)
