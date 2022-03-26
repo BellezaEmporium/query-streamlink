@@ -5,58 +5,25 @@ from streamlink import (
 
 
 class Fetch:
-    """
-    Gets data from host, filters it and returns streams
-    (query: str, quality: str,list,tuple)
-    """
-
-    def __init__(self, query, quality):
-        self.query = query
-        if not quality:
-            quality = "best"
-        if "," in quality:
-            self.qualities = quality.split(",")
-        else:
-            self.qualities = [quality]
-
-    def get_streams(self):
+    def get_streams(self, query):
         """
-        Get data streams and resolutions
-        Returns: (links, resolution), Error string
+        Get data streams
+        Returns: (links), Error string
         """
         try:
-            links = streamlink.streams(self.query)
-            res = list(links.keys())
-            return links, res
-        except Exception:
-            # returns exceptions raised by streamlink
-            raise
-
-    def filtered_streams(self):
-        """
-        Filter streams according to specified quality.
-        Default quality: best
-        Returns: {quality: stream_url}
-        """
-        try:
-            payload = self.get_streams()
-            streams, resolutions = payload
+            streams = list(streamlink.streams(query).items())
             if not streams:
-                raise ValueError
-            res_str = ",".join(resolutions)
+                return "No streams have been found."
+            else:
+                for quality, link in streams:
+                    # read HLSStream as "string" even if it isn't conventional
+                    string_link = str(link)
+                    # specific streann / DASH fix
+                    if "streannlive" or "DASHStream" in string_link:
+                        return link.to_manifest_url()
+                    else:
+                        return link.to_url()
+        except ValueError as ex:
+            return f"Could not get the link, Streamlink couldn't read {query}, for this reason : {ex}"
         except PluginError as pe:
             return str(pe)
-        except ValueError:
-            return f"Could not get the link, Streamlink couldn't read {self.query}"
-        except TypeError:
-            return payload
-
-        if "best" in self.qualities:
-            next((x for x in res_str if x == "best"), None)
-        elif "worst" in self.qualities:
-            next((x for x in res_str if x == "worst"), None)
-
-        for q in self.qualities:
-            if q not in resolutions:
-                return f"Invalid quality {q}. Available qualities are: {res_str}"
-        return {quality: streams[quality].url for quality in self.qualities}
