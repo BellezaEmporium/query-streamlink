@@ -17,7 +17,7 @@ def query_handler(args):
     if args:
         query = args.get("streaming-ip")
         if not query:
-            return "You haven't given any URL."
+            return "You didn't give any URL."
         valid = validators.url(query)
         if not valid:
             return "The URL you've entered is not valid."
