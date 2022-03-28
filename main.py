@@ -17,24 +17,20 @@ def query_handler(args):
     if args:
         query = args.get("streaming-ip")
         if not query:
-            message = "streaming-ip string is empty"
-            return message
-
+            return "You haven't given any URL."
         valid = validators.url(query)
         if not valid:
-            message = "The URL you've entered is not valid."
-            return message
-
-        stream_obj = Fetch().get_streams(query)
-        return stream_obj
+            return "The URL you've entered is not valid."
+        return Fetch().get_streams(query)
     else:
-        message = "No queries provided. Nothing to do."
-        return message
+        return "No queries provided. Nothing to do."
 
 
 @app.route("/", methods=['GET'])
 def index():
-    return "This program permits you to get direct access to streams by using Streamlink.\nIf you have a link that needs to be treated, from this webpage, add /iptv-query?streaming-ip= *your URL*.\nNote that it will work only on Streamlink-supported websites.\nEnjoy ! LaneSh4d0w. Special thanks to Keystroke for the API usage."
+    return "This program permits you to get direct access to streams by using Streamlink.\r\nIf you have a link that " \
+           "needs to be treated, from this webpage, add /iptv-query?streaming-ip= *your URL*.\r\nNote that it will work " \
+           "only on Streamlink-supported websites.\r\nEnjoy ! LaneSh4d0w. Special thanks to Keystroke for the API usage. "
 
 
 @app.route("/iptv-query", methods=['GET'])
@@ -42,10 +38,14 @@ def index():
 @limiter.limit("1/second")
 def home():
     response = query_handler(request.args)
+    valid2 = validators.url(response)
     if response is not None:
-        return redirect(response)
+        if not valid2:
+            return f"Link {request.args['streaming-ip']} returned no valid URL as an answer. Instead, it answered {response}. "
+        else:
+            return redirect(response)
     else:
-        return f"Link {request.args['streaming-ip']} returned no answer."
+        return "Nothing was provided by Streamlink."
 
 
 @app.errorhandler(429)

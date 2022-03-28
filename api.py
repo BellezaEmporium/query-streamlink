@@ -13,7 +13,7 @@ class Fetch:
         try:
             streams = list(streamlink.streams(query).items())
             if not streams:
-                return "No streams have been found."
+                return None
             else:
                 for quality, link in streams:
                     # Suggest that if there's no multiple qualities (live),
