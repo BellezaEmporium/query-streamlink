@@ -12,6 +12,7 @@ limiter = Limiter(
     key_func=get_remote_address
 )
 
+
 def query_handler(args):
     """Checks and tests arguments before serving request"""
     if args:
@@ -21,7 +22,11 @@ def query_handler(args):
         valid = validators.url(query)
         if not valid:
             return "The URL you've entered is not valid."
-        return Fetch().get_streams(query)
+        try:
+            return Fetch().get_streams(query)
+        except Exception:
+            return "No streams found."
+
     else:
         return "No queries provided. Nothing to do."
 
@@ -41,7 +46,8 @@ def home():
     valid2 = validators.url(response)
     if response is not None:
         if not valid2:
-            return f"Link {request.args['streaming-ip']} returned no valid URL as an answer. Instead, it answered {response}. "
+            return f"Link {request.args['streaming-ip']} returned no valid URL as an answer. " \
+                   f"Instead, it answered {response}. "
         else:
             return redirect(response)
     else:
@@ -51,6 +57,7 @@ def home():
 @app.errorhandler(429)
 def ratelimit_handler(e):
     return "Whoa there ! I know you like that service, but there's no need to spam me ! Let the server breathe a little bit (RATE LIMIT EXCEEDED)"
+
 
 # change to your likings, params are "ip", "port", "threaded"
 if __name__ == '__main__':
