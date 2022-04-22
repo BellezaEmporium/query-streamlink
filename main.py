@@ -3,7 +3,7 @@ from flask import Flask, request, redirect
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 import validators
-from api import Fetch
+from api import get_streams
 
 app = Flask(__name__)
 
@@ -15,27 +15,23 @@ limiter = Limiter(
 
 def query_handler(args):
     """Checks and tests arguments before serving request"""
-    if args:
-        query = args.get("streaming-ip")
-        if not query:
-            return "You didn't give any URL."
-        valid = validators.url(query)
+    if not args.get("streaming-ip"):
+        return "You didn't give any URL."
+    else:
+        valid = validators.url(args.get("streaming-ip"))
         if not valid:
             return "The URL you've entered is not valid."
-        try:
-            return Fetch().get_streams(query)
-        except Exception:
-            return "No streams found."
-
-    else:
-        return "No queries provided. Nothing to do."
+        else:
+            return get_streams(args.get("streaming-ip"))
 
 
 @app.route("/", methods=['GET'])
 def index():
     return "This program permits you to get direct access to streams by using Streamlink.\r\nIf you have a link that " \
-           "needs to be treated, from this webpage, add /iptv-query?streaming-ip= *your URL*.\r\nNote that it will work " \
-           "only on Streamlink-supported websites.\r\nEnjoy ! LaneSh4d0w. Special thanks to Keystroke for the API usage. "
+           "needs to be treated, from this webpage, add /iptv-query?streaming-ip= *your URL*.\r\nNote that it will " \
+           "work " \
+           "only on Streamlink-supported websites.\r\nEnjoy ! LaneSh4d0w. Special thanks to Keystroke for the API " \
+           "usage. "
 
 
 @app.route("/iptv-query", methods=['GET'])
@@ -44,19 +40,16 @@ def index():
 def home():
     response = query_handler(request.args)
     valid2 = validators.url(response)
-    if response is not None:
-        if not valid2:
-            return f"Link {request.args['streaming-ip']} returned no valid URL as an answer. " \
-                   f"Instead, it answered {response}. "
-        else:
-            return redirect(response)
+    if not valid2:
+        return response
     else:
-        return "Nothing was provided by Streamlink."
+        return redirect(response)
 
 
 @app.errorhandler(429)
-def ratelimit_handler(e):
-    return "Whoa there ! I know you like that service, but there's no need to spam me ! Let the server breathe a little bit (RATE LIMIT EXCEEDED)"
+def ratelimit_handler():
+    return "Whoa there ! I know you like that service, but there's no need to spam me ! Let the server breathe a " \
+           "little bit (RATE LIMIT EXCEEDED) "
 
 
 # change to your likings, params are "ip", "port", "threaded"
