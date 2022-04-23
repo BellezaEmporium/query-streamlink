@@ -16,7 +16,10 @@ def get_streams(query):
                 # Suggest that if there's no multiple qualities (live),
                 # give manifest (master) URL.
                 if "live" not in quality or "best" in quality:
-                    return link.to_manifest_url()
+                    if "chunklist" in link.to_url():
+                        return link.to_url()
+                    else:
+                        return link.to_manifest_url()
                 else:
                     return link.to_url()
     except ValueError as ex:
