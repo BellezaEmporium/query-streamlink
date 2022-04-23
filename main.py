@@ -39,11 +39,14 @@ def index():
 @limiter.limit("1/second")
 def home():
     response = query_handler(request.args)
-    valid2 = validators.url(response)
-    if not valid2:
-        return response
+    if response is not None:
+        valid2 = validators.url(response)
+        if not valid2:
+            return response
+        else:
+            return redirect(response)
     else:
-        return redirect(response)
+        return f"Streamlink returned nothing from query {request.args.get('streaming-ip')}"
 
 
 @app.errorhandler(429)
