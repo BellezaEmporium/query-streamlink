@@ -32,6 +32,9 @@ streaming-ip (obligatoire) : L'URL du site dont vous souhaitez le flux vidéo.
 
 quality (optionnel) : La qualité voulue pour ce flux. Ne pas renseigner la qualité revient à choisir la meilleure, renseigner "unsure" revient à donner toutes les qualités disponibles pour ce flux.
 
+## Déployer sur Heroku
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FLaneSh4d0w%2Fquery-streamlink)
+
 ## Remerciements :
 
 -  [@keystroke3](https://github.com/keystroke3) pour la refonte du programme, et de la création de l'API.
