@@ -8,14 +8,6 @@ This program is made possible thanks to Streamlink.
 
 To support them, please make a donation to their [Open Collective page](https://opencollective.com/streamlink)
 
-## How to load the program :
-
-- Locally :
-```python main.py```
-- Heroku : [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FLaneSh4d0w%2Fquery-streamlink) (kudos to [@adrianpaniagualeon](https://github.com/adrianpaniagualeon))
-- Other services (repl / glitch...) :
-For the other kinds, see if they have specific configurations, but a simple fork of the program using your account is sufficient to make it work !
-
 ## How it works :
 
 This program works by asking Streamlink, based on the URL you gave, an URL that can be used for (almost !) all known players to this date. 
@@ -28,6 +20,16 @@ Basically any website that [Streamlink](https://streamlink.github.io/plugin_matr
 ## Query parameters :
 
 - streaming-ip (mandatory) : The URL of the stream you need the link to.
+
+## How to load the program locally :
+
+Simple: launch the program by using ```python main.py```
+
+## How to deploy query-streamlink on a remote service :
+
+- Heroku : [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FLaneSh4d0w%2Fquery-streamlink) (kudos to [@adrianpaniagualeon](https://github.com/adrianpaniagualeon))
+- Other services (repl / glitch...) :
+For the other kinds, see if they have specific configurations, but a simple fork of the program using your account is sufficient to make it work !
 
 ## Thank yous :
 
