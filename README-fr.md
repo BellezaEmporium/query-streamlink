@@ -8,17 +8,6 @@ Ce programme est possible grâce à Streamlink.
 
 Pour les soutenir, veuillez effectuer une donation sur leur [page Open Collective](https://opencollective.com/streamlink)
 
-## Comment lancer le programme :
-
-- Localement :
-```python main.py```
-
-- En ligne (sur serveur repl / heroku etc...) :
-[@adrianpaniagualeon](https://github.com/adrianpaniagualeon) à automatisé la création grâce au bouton Heroku Deploy, merci à lui.
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FLaneSh4d0w%2Fquery-streamlink)
-
-Pour les autres services du même type, un simple fork du programme avec votre compte devrait suffire à le faire fonctionner, mais veuillez vérifier néanmoins s'il y existe des configurations spécifiques.
-
 ## Fonctionnement :
 
 Ce programme fonctionne en demandant à Streamlink, en se basant sur l'URL donnée, un lien menant au flux vidéo, lisible par (quasiment !) tous les lecteurs connus à ce jour.
@@ -31,6 +20,15 @@ Tout site internet supporté officiellement par [Streamlink](https://streamlink.
 ## Paramètres :
 
 streaming-ip (obligatoire) : L'URL du site dont vous souhaitez le flux vidéo.
+
+## Comment lancer le programme localement :
+
+C'est simple : il vous suffit de lancer le programme en écrivant ```python main.py```
+
+## Comment déployer query-streamlink sur un service dédié :
+- Heroku : [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FLaneSh4d0w%2Fquery-streamlink) (merci à [@adrianpaniagualeon](https://github.com/adrianpaniagualeon))
+
+- Autres services (repl, glitch...) : Pour les autres services du même type, un simple fork du programme avec votre compte devrait suffire à le faire fonctionner, mais veuillez vérifier néanmoins s'il y existe des configurations spécifiques.
 
 ## Remerciements :
 
