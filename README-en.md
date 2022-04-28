@@ -14,6 +14,8 @@ To support them, please make a donation to their [Open Collective page](https://
 ```python main.py```
 
 - Remote (repl / heroku etc...) :
+[@adrianpaniagualeon](https://github.com/adrianpaniagualeon) made an Heroku deploy button to make things a lot more easier, thanks to him.
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FLaneSh4d0w%2Fquery-streamlink)
 See if they have specific configurations, but a simple fork of the program using your account is sufficient to make it work !
 
 ## How it works :
@@ -25,14 +27,9 @@ query-streamlink simply acts like an intermediary/redirector between the end-use
 
 Basically any website that [Streamlink](https://streamlink.github.io/plugin_matrix.html) supports (beware of geo-location issues for some services)
 
-## Different queries available :
+## Query parameters :
 
 - streaming-ip (mandatory) : The URL of the stream you need the link to.
-
-- quality (optional) : The streaming quality you want to watch in. No quality specified results in automatically choosing the best quality available for this stream. Specifying "unsure" gives you all the available qualities for the stream.
-
-## Deploy to Heroku
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FLaneSh4d0w%2Fquery-streamlink)
 
 ## Thank yous :
 
@@ -44,11 +41,8 @@ Basically any website that [Streamlink](https://streamlink.github.io/plugin_matr
 
 - The Streamlink members and contributors for this amazing tool that is.
 
-
-### Available websites (as of 22/11/2021)
+### Available websites (as of 28/04/2022)
 
 Here are the actual recensed websites that uses query-streamlink on the Internet :
-
-[Link-A-Stream - Hosted website (keystroke3) (WIP)](https://linkastream.co/)
 
 [FullSpeed - DCT EU (dct-infra)](http://free.fullspeed.tv/)
