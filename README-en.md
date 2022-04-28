@@ -12,11 +12,8 @@ To support them, please make a donation to their [Open Collective page](https://
 
 - Locally :
 ```python main.py```
-
-- Remote (repl / heroku etc...) :
-[@adrianpaniagualeon](https://github.com/adrianpaniagualeon) made an Heroku deploy button to make things a lot more easier, thanks to him.
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FLaneSh4d0w%2Fquery-streamlink)
-
+- Heroku : [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FLaneSh4d0w%2Fquery-streamlink) (kudos to [@adrianpaniagualeon](https://github.com/adrianpaniagualeon))
+- Other services (repl / glitch...) :
 For the other kinds, see if they have specific configurations, but a simple fork of the program using your account is sufficient to make it work !
 
 ## How it works :
