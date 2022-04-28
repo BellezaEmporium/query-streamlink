@@ -14,8 +14,10 @@ Para contribuir en este proyecto, por favor haz una donación en su [página Ope
 ```python main.py```
 
 - Servidor (repl / heroku etc...) :
+[@adrianpaniagualeon](https://github.com/adrianpaniagualeon) hizo un boton que permite una creación automática del programa directamente en Heroku, gracias a el.
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FLaneSh4d0w%2Fquery-streamlink)
 
-Un fork del programa debe ser suficiente para hacerlo funcionar, sin embargo, verifica con el servidor las configuraciones específicas.
+Para los otros servicios del mismo tipo, un fork del programa debe ser suficiente para hacerlo funcionar, sin embargo, verifica con el servidor las configuraciones específicas.
 
 ## Como eso funciona:
 
@@ -26,15 +28,9 @@ query-streamlink solo es un intermediario entre el usuario final y Streamlink.
 
 Prácticamente todos los sitios que [Streamlink](https://streamlink.github.io/plugin_matrix.html) soporte (atención con los problemas de restricción geográfica con unas servicios)
 
-## Opciones diferentes:
+## Opciones :
 
 streaming-ip (obligatorio) : La URL del stream que quiere ver.
-
-quality (opcional): La calidad del stream en cualquier quieres verlo. No calidad especificada va a escoger la mejor calidad disponible. Especificar "unsure" va a mostrar todas las calidades disponibles.
-
-## Desplegar en Heroku
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FLaneSh4d0w%2Fquery-streamlink)
-
 
 ## Gracias:
 
@@ -46,11 +42,8 @@ quality (opcional): La calidad del stream en cualquier quieres verlo. No calidad
 
 - Los miembros y contribuyentes de Streamlink para este magnificente programa.
 
-
 ## Sitios disponibles (al 22/11/2021):
 
 Aquí son las sitios web reconocidos que usan query-streamlink en el Internet:
-
-[Link-A-Stream - Hosted website (keystroke3) (WIP)](https://linkastream.co/)
 
 [FullSpeed - DCT EU (dct-infra)](http://free.fullspeed.tv/)
