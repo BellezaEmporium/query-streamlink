@@ -31,6 +31,9 @@ Basically any website that [Streamlink](https://streamlink.github.io/plugin_matr
 
 - quality (optional) : The streaming quality you want to watch in. No quality specified results in automatically choosing the best quality available for this stream. Specifying "unsure" gives you all the available qualities for the stream.
 
+## Deploy to Heroku
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FLaneSh4d0w%2Fquery-streamlink)
+
 ## Thank yous :
 
 -  [@keystroke3](https://github.com/keystroke3) for the support and rework of the application.
