@@ -32,6 +32,10 @@ streaming-ip (obligatorio) : La URL del stream que quiere ver.
 
 quality (opcional): La calidad del stream en cualquier quieres verlo. No calidad especificada va a escoger la mejor calidad disponible. Especificar "unsure" va a mostrar todas las calidades disponibles.
 
+## Desplegar en Heroku
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FLaneSh4d0w%2Fquery-streamlink)
+
+
 ## Gracias:
 
 -  [@keystroke3](https://github.com/keystroke3) por el soporte y el rehacimiento de la aplicación.
