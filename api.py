@@ -11,17 +11,11 @@ def get_streams(query):
         streams = list(streamlink.streams(query).items())
         if not streams:
             return "No streams found."
-        else:
-            for quality, link in streams:
+        for quality, link in streams:
                 # Suggest that if there's no multiple qualities (live),
                 # give manifest (master) URL.
-                if "live" not in quality or "best" in quality:
-                    if "chunklist" in link.to_url():
-                        return link.to_url()
-                    else:
-                        return link.to_manifest_url()
-                else:
-                    return link.to_url()
+            return link.to_url() if ("live" not in quality or "best" in quality) and "chunklist" in link.to_url() or "live" in quality and "best" not in quality else link.to_manifest_url()
+
     except ValueError as ex:
         return f"Streamlink couldn't read {query}, for this reason : {ex}"
     except NoPluginError:

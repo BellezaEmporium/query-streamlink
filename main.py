@@ -17,12 +17,9 @@ def query_handler(args):
     """Checks and tests arguments before serving request"""
     if not args.get("streaming-ip"):
         return "You didn't give any URL."
-    else:
-        valid = validators.url(args.get("streaming-ip"))
-        if not valid:
-            return "The URL you've entered is not valid."
-        else:
-            return get_streams(args.get("streaming-ip"))
+
+    valid = validators.url(args.get("streaming-ip"))
+    return get_streams(args.get("streaming-ip")) if valid else "The URL you've entered is not valid."
 
 
 @app.route("/", methods=['GET'])
@@ -39,14 +36,11 @@ def index():
 @limiter.limit("1/second")
 def home():
     response = query_handler(request.args)
-    if response is not None:
-        valid2 = validators.url(response)
-        if not valid2:
-            return response
-        else:
-            return redirect(response)
-    else:
+    if response is None:
         return f"Streamlink returned nothing from query {request.args.get('streaming-ip')}"
+
+    valid2 = validators.url(response)
+    return redirect(response) if valid2 else response
 
 
 @app.errorhandler(429)
