@@ -29,7 +29,7 @@ Basit: programı ```python main.py``` kullanarak başlatın
 
 ## Uzak bir hizmette sorgu akış bağlantısı nasıl kurulur :
 
-- Heroku : [![Dağıt](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com %2FLaneSh4d0w%2Fquery-streamlink) ([@adrianpaniagualeon'a](https://github.com/adrianpaniagualeon)) tebrikler
+- Heroku : [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FLaneSh4d0w%2Fquery-streamlink) ([@adrianpaniagualeon'a](https://github.com/adrianpaniagualeon)) teşekkürler..
 - Diğer hizmetler (repl / glitch...):
 Diğer türler için, belirli konfigürasyonları olup olmadığına bakın, ancak programın çalışması için hesabınızı kullanan basit bir fork yeterlidir!
 
