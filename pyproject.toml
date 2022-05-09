@@ -10,7 +10,7 @@ name = "repl_python3_query-streamlink"
 version = "0.1.0"
 [tool.poetry.dependencies]
 flask = "^2.0.1"
-python = "^3.8"
+python = "^3.10"
 streamlink = "^2.2.0"
 validators = "^0.18.2"
 Flask-Limiter = "^1.4"
