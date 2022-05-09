@@ -9,4 +9,4 @@ A Python webapp that is destined to spit out links given by all sources supporte
 
 - [Espanol](./README-es.md) (README reviewed by DG, modified by LS)
 
-- [Turkish](./README-tr.md) (README modified by keyiflerolsun)
+- [Türkiye](./README-tr.md) (README modified by keyiflerolsun)
