@@ -50,9 +50,8 @@ def home():
 
 
 @app.errorhandler(429)
-def ratelimit_handler():
-    return "Whoa there ! I know you like that service, but there's no need to spam me ! Let the server breathe a " \
-           "little bit (RATE LIMIT EXCEEDED) "
+def ratelimit_handler(e):
+    return f"Rate limit exceeded, cannot proceed further. Here's a message from Ground Control : {e}"
 
 
 # change to your likings, params are "ip", "port", "threaded"
