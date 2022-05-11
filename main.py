@@ -18,8 +18,14 @@ def query_handler(args):
     if not args.get("streaming-ip"):
         return "You didn't give any URL."
 
-    valid = validators.url(args.get("streaming-ip"))
-    return get_streams(args.get("streaming-ip")) if valid else "The URL you've entered is not valid."
+    # for dacast, be warned we have MULTIPLE parameters. Get it if exists
+    if args.get("provider"):
+        valid = validators.url(args.get("streaming-ip"))
+        url = args.get("streaming-ip") + "&provider=" + args.get('provider')
+        return get_streams(url) if valid else "The URL you've entered is not valid."
+    else:
+        valid = validators.url(args.get("streaming-ip"))
+        return get_streams(args.get("streaming-ip")) if valid else "The URL you've entered is not valid."
 
 
 @app.route("/", methods=['GET'])
