@@ -42,11 +42,11 @@ def index():
 @limiter.limit("1/second")
 def home():
     response = query_handler(request.args)
-    if response is None:
-        return f"Streamlink returned nothing from query {request.args.get('streaming-ip')}"
-
     valid2 = validators.url(response)
-    return redirect(response) if valid2 else response
+    if response is None or not valid2:
+        return f"Streamlink returned nothing from query {request.args.get('streaming-ip')}, reason being {response}"
+
+    return response if request.args.get("noredirect") == "yes" else redirect(response)
 
 
 @app.errorhandler(429)
