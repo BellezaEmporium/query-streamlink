@@ -14,7 +14,12 @@ def get_streams(query):
             return "No streams found."
         for quality, link in streams:
             # Suggest that if there's no multiple qualities (live), give manifest (master) URL.
-            return link.to_url() if ("live" not in quality or "best" in quality) and "chunklist" in link.to_url() or "live" in quality and "best" not in quality or type(DASHStream) else link.to_manifest_url()
+            return link.to_url() if ("live" not in quality or "best" in quality) \
+                                    and ("playlist" or "master" or "index") in link.to_url() \
+                                    or "live" in quality \
+                                    and "best" not in quality \
+                                    or type(DASHStream) \
+                                 else link.to_manifest_url()
 
     except ValueError as ex:
         return f"Streamlink couldn't read {query}, for this reason : {ex}"
