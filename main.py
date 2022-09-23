@@ -44,14 +44,14 @@ def home():
     response = query_handler(request.args)
     valid2 = validators.url(response)
     if response is None or not valid2:
-        return f"Streamlink returned nothing from query {request.args.get('streaming-ip')}, reason being {response}"
+        return response
 
     return response if request.args.get("noredirect") == "yes" else redirect(response)
 
 
 @app.errorhandler(429)
 def ratelimit_handler(e):
-    return f"Rate limit exceeded, cannot proceed further. Here's a message from Ground Control : {e}"
+    return e
 
 
 # change to your likings, params are "ip", "port", "threaded"
