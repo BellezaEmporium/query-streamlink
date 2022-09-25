@@ -1,5 +1,6 @@
 import streamlink
 from streamlink import NoPluginError, PluginError
+from streamlink.plugins.twitch import TwitchHLSStream
 from streamlink.stream import DASHStream, HLSStream
 
 
@@ -17,7 +18,7 @@ def get_streams(query):
             # All HLS links should work with adaptive.
             if type(link) is DASHStream:
                 return link.to_url()
-            elif type(link) is HLSStream:
+            elif type(link) is HLSStream or TwitchHLSStream:
                 return link.to_url() if "best" in quality and "chunklist" in link.to_url()\
                                     or "live" in quality else link.to_manifest_url()
     # Issue when getting data from query
