@@ -15,6 +15,7 @@ limiter = Limiter(
 )
 
 
+# Reads the URL parameters and redirects to Streamlink.
 def query_handler(args):
     """Checks and tests arguments before serving request"""
     if not args.get("streaming-ip"):
@@ -30,6 +31,7 @@ def query_handler(args):
         return get_streams(args.get("streaming-ip")) if valid else "The URL you've entered is not valid."
 
 
+# Presentation page
 @app.route("/", methods=['GET'])
 def index():
     return "This program permits you to get direct access to streams by using Streamlink.\r\nIf you have a link that " \
@@ -39,6 +41,8 @@ def index():
            "usage. "
 
 
+# iptv-query route -> gives link to Streamlink, link is analyzed
+# for correct plugin routing, and redirects (or shows) to the stream link.
 @app.route("/iptv-query", methods=['GET'])
 @limiter.limit("20/minute")
 @limiter.limit("1/second")
@@ -51,6 +55,7 @@ def home():
     return response if request.args.get("noredirect") == "yes" else redirect(response)
 
 
+# Rate limiting system.
 @app.errorhandler(429)
 def ratelimit_handler(e):
     return f'{e}. To ensure everyone gets a correct access to the program, we are rate-limiting the server.'
