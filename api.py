@@ -3,6 +3,7 @@ from streamlink import NoPluginError, PluginError
 from streamlink.stream import DASHStream
 
 
+# Queries Streamlink for stream link retrieval, gives correct redirection measures
 def get_streams(query):
     """
     Get data streams
@@ -13,14 +14,17 @@ def get_streams(query):
         if not streams:
             return "No streams found."
         for quality, link in streams:
-            # Suggest that if there's no multiple qualities (live), give manifest (master) URL.
-            return link.to_url() if ("live" not in quality or "best" in quality) \
-                                    and ("playlist" or "master" or "index") in link.to_url() \
-                                    or "live" in quality \
-                                    and "best" not in quality \
-                                    or type(DASHStream) \
-                                 else link.to_manifest_url()
-
+            # Dailymotion no-IP-lock stream workaround
+            if query.__contains__('dailymotion.com') or query.__contains__('dai.ly'):
+                return link.to_url()
+            # Some DASH streams have got some interesting issues, hence we need to fix it directly.
+            # All HLS links should work with adaptive.
+            if type(link) is DASHStream:
+                return link.to_url()
+            elif type(link) is not DASHStream:
+                return link.to_url() if "best" in quality and "chunklist" in link.to_url() \
+                                        or "live" in quality or "http" in quality else link.to_manifest_url()
+    # Issue when getting data from query
     except ValueError as ex:
         return f"Streamlink couldn't read {query}, for this reason : {ex}"
     except NoPluginError:
