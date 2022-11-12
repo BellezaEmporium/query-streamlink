@@ -14,6 +14,11 @@ def get_streams(query):
         if not streams:
             return "No streams found."
         for quality, link in streams:
+            # Dailymotion no-IP-lock stream workaround
+            if query.__contains__('dailymotion.com') or query.__contains__('dai.ly'):
+                l0_link = link.to_url()
+                good = l0_link.replace("live-0", "live-3")
+                return good
             # Some DASH streams have got some interesting issues, hence we need to fix it directly.
             # All HLS links should work with adaptive.
             if type(link) is DASHStream:
