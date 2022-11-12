@@ -9,10 +9,13 @@ app = Flask(__name__)
 
 limiter = Limiter(
     app,
-    key_func=get_remote_address
+    key_func=get_remote_address,
+    default_limits=["100 per hour"],
+    storage_uri="memory://",
 )
 
 
+# Reads the URL parameters and redirects to Streamlink.
 def query_handler(args):
     """Checks and tests arguments before serving request"""
     if not args.get("streaming-ip"):
@@ -28,6 +31,7 @@ def query_handler(args):
         return get_streams(args.get("streaming-ip")) if valid else "The URL you've entered is not valid."
 
 
+# Presentation page
 @app.route("/", methods=['GET'])
 def index():
     return "This program permits you to get direct access to streams by using Streamlink.\r\nIf you have a link that " \
@@ -37,6 +41,8 @@ def index():
            "usage. "
 
 
+# iptv-query route -> gives link to Streamlink, link is analyzed
+# for correct plugin routing, and redirects (or shows) to the stream link.
 @app.route("/iptv-query", methods=['GET'])
 @limiter.limit("20/minute")
 @limiter.limit("1/second")
@@ -44,14 +50,15 @@ def home():
     response = query_handler(request.args)
     valid2 = validators.url(response)
     if response is None or not valid2:
-        return f"Streamlink returned nothing from query {request.args.get('streaming-ip')}, reason being {response}"
+        return response
 
     return response if request.args.get("noredirect") == "yes" else redirect(response)
 
 
+# Rate limiting system.
 @app.errorhandler(429)
 def ratelimit_handler(e):
-    return f"Rate limit exceeded, cannot proceed further. Here's a message from Ground Control : {e}"
+    return f'{e}. To ensure everyone gets a correct access to the program, we are rate-limiting the server.'
 
 
 # change to your likings, params are "ip", "port", "threaded"

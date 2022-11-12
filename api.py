@@ -14,9 +14,6 @@ def get_streams(query):
         if not streams:
             return "No streams found."
         for quality, link in streams:
-            # Dailymotion no-IP-lock stream workaround
-            if query.__contains__('dailymotion.com') or query.__contains__('dai.ly'):
-                return link.to_url()
             # Some DASH streams have got some interesting issues, hence we need to fix it directly.
             # All HLS links should work with adaptive.
             if type(link) is DASHStream:
@@ -26,8 +23,13 @@ def get_streams(query):
                                         or "live" in quality or "http" in quality else link.to_manifest_url()
     # Issue when getting data from query
     except ValueError as ex:
-        return f"Streamlink couldn't read {query}, for this reason : {ex}"
+        return f"Streamlink couldn't read {query}, {ex}"
+    # Trying to use Streamlink on an unsupported website
     except NoPluginError:
-        return f"Streamlink was unable to process your query, because no plugin has been implemented for website {query}"
+        return f"No plugin has been implemented for website {query}"
+    # Plugin issue when getting data from query
     except PluginError as pex:
-        return f"Streamlink couldn't process {query}, because of a Plugin error. Reason is as follows: {pex}"
+        return f"A Plugin error has occurred, {pex}"
+    # Anything else
+    except Exception as nex:
+        return f"Something went wrong somewhere, it seems, or else I wouldn't have '{nex}' as a result."
