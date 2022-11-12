@@ -1,6 +1,7 @@
 import streamlink
 from streamlink import NoPluginError, PluginError
 from streamlink.stream import DASHStream
+import urllib.request
 
 
 # Queries Streamlink for stream link retrieval, gives correct redirection measures
@@ -10,15 +11,29 @@ def get_streams(query):
     Returns: (links), Error string
     """
     try:
-        streams = list(streamlink.streams(query).items())
+        streams = streamlink.streams(query).items()
         if not streams:
             return "No streams found."
         for quality, link in streams:
             # Dailymotion no-IP-lock stream workaround
             if query.__contains__('dailymotion.com') or query.__contains__('dai.ly'):
-                l0_link = link.to_url()
-                good = l0_link.replace("live-0", "live-3")
-                return good
+                url = link.to_manifest_url()
+                response = urllib.request.urlopen(url)
+                data = response.read()  # a `bytes` object
+                text = data.decode('utf-8')
+                if text.__contains__('live-3'):
+                    l0_link = link.to_url()
+                    l0_replace = l0_link.replace('live-0', 'live-3')
+                    return l0_replace
+                elif text.__contains__('live-2') and not text.__contains__('live-3'):
+                    l0_link = link.to_url()
+                    l0_replace = l0_link.replace('live-0', 'live-2')
+                    return l0_replace
+                else:
+                    l0_link = link.to_url()
+                    l0_replace = l0_link.replace('live-0', 'live-1')
+                    return l0_replace
+
             # Some DASH streams have got some interesting issues, hence we need to fix it directly.
             # All HLS links should work with adaptive.
             if type(link) is DASHStream:
