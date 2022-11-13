@@ -19,7 +19,7 @@ def get_streams(query):
             if query.__contains__('dailymotion.com') or query.__contains__('dai.ly'):
                 url = link.to_manifest_url()
                 response = urllib.request.urlopen(url)
-                data = response.read()  # a `bytes` object
+                data = response.read()
                 text = data.decode('utf-8')
                 if text.__contains__('live-3'):
                     l0_link = link.to_url()
@@ -29,10 +29,12 @@ def get_streams(query):
                     l0_link = link.to_url()
                     l0_replace = l0_link.replace('live-0', 'live-2')
                     return l0_replace
-                else:
+                elif text.__contains__('live-1') and not text.__contains__('live-2') and not text.__contains__('live-3'):
                     l0_link = link.to_url()
                     l0_replace = l0_link.replace('live-0', 'live-1')
                     return l0_replace
+                else:
+                    return link.to_url()
 
             # Some DASH streams have got some interesting issues, hence we need to fix it directly.
             # All HLS links should work with adaptive.
