@@ -25,11 +25,11 @@ def get_streams(query):
                     l0_link = link.to_url()
                     l0_replace = l0_link.replace('live-0', 'live-3')
                     return l0_replace
-                elif text.__contains__('live-2') and not text.__contains__('live-3'):
+                elif text.__contains__('live-2'):
                     l0_link = link.to_url()
                     l0_replace = l0_link.replace('live-0', 'live-2')
                     return l0_replace
-                elif text.__contains__('live-1') and not text.__contains__('live-2') and not text.__contains__('live-3'):
+                elif text.__contains__('live-1'):
                     l0_link = link.to_url()
                     l0_replace = l0_link.replace('live-0', 'live-1')
                     return l0_replace
