@@ -61,6 +61,6 @@ def ratelimit_handler(e):
     return f'{e}. To ensure everyone gets a correct access to the program, we are rate-limiting the server.'
 
 
-# change to your likings, params are "ip", "port", "threaded"
+# change to your likings, params are "host", "port", "threaded"
 if __name__ == '__main__':
     app.run(threaded=False, port=5000)
