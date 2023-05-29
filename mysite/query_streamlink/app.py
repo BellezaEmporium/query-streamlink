@@ -6,137 +6,72 @@ app = NinjaAPI()
 import validators
 import streamlink
 from streamlink import (
+    NoPluginError
     PluginError
 )
+from streamlink.stream import DASHStream
 
 
 class Fetch:
     """
-    Gets data from host, filters it and returns streams
-    (query: str, quality: str,list,tuple)
+    Get data streams
+    Returns: (links), Error string
     """
+    try:
+        streams = streamlink.streams(query).items()
+        if not streams:
+            return "No streams found."
+        
+        for quality, link in streams:
+            if query.__contains__('dailymotion.com') or query.__contains__('dai.ly'):
+                url = link.to_manifest_url()
+                if url.__contains__('https://www.dailymotion.com/cdn/live/video/'):
+                    response = urllib.request.urlopen(url)
+                    data = response.read()
+                    text = data.decode('utf-8')
+                    replacements = {'live-3': 'live-0', 'live-2': 'live-0', 'live-1': 'live-0'}
+                    for key in replacements:
+                        if text.__contains__(key):
+                            l0_link = link.to_url()
+                            l0_replace = l0_link.replace('live-0', replacements[key])
+                            return l0_replace
+                    return link.to_url()
+                else:
+                    return url
 
-    def __init__(self, query, quality):
-        self.query = query
-        if not quality:
-            quality = "best"
-        if "," in quality:
-            self.qualities = quality.split(",")
-        else:
-            self.qualities = [quality]
+            if isinstance(link, DASHStream):
+                return link.to_url()
+            elif not isinstance(link, DASHStream):
+                if "best" in quality and "chunklist" in link.to_url() \
+                        or "live" in quality or "http" in quality:
+                    return link.to_url()
+                else:
+                    return link.to_manifest_url()
 
-    def get_streams(self):
-        """
-        Get data streams and resolutions
-        Returns: (links, resolution), Error string
-        """
-        try:
-            links = streamlink.streams(self.query)
-            res = list(links.keys())
-            return links, res
-        except Exception:
-            # returns exceptions raised by streamlink
-            raise
-
-    def filtered_streams(self):
-        """
-        Filter streams according to specified quality.
-        Default quality: best
-        Returns: {quality: stream_url}
-        """
-        try:
-            payload = self.get_streams()
-            streams, resolutions = payload
-            if not streams:
-                raise ValueError
-            res_str = ",".join(resolutions)
-        except PluginError as pe:
-            return str(pe)
-        except ValueError:
-            return f"Could not get the link, Streamlink couldn't read {self.query}"
-        except TypeError:
-            return payload
-
-        if "best" in self.qualities:
-            next((x for x in res_str if x == "best"), None)
-        elif "worst" in self.qualities:
-            next((x for x in res_str if x == "worst"), None)
-
-        for q in self.qualities:
-            if q not in resolutions:
-                return f"Invalid quality {q}. Available qualities are: {res_str}"
-        return {quality: streams[quality].url for quality in self.qualities}
+    except ValueError as ex:
+        return f"Streamlink couldn't read {query}, {ex}"
+    except NoPluginError:
+        return f"No plugin has been implemented for website {query}"
+    except PluginError as pex:
+        return f"A Plugin error has occurred: {pex}"
+    except Exception as nex:
+        return f"Something went wrong: {nex}"
 
 
-def make_m3u8(output):
-    """Creates m3u file and string
-    (output: dict, query: str)
-    """
-    speeds = {
-        1000: 5_000_000,
-        700: 2_500_000,
-        400: 1_100_000,
-        300: 700_000,
-        200: 400_000,
-        100: 200_000,
-    }
-    link_str = "#EXTM3U\n"
-    for res in output:
-        r = res.split("p")[0]
-        if type(r) == int:
-            for speed in speeds:
-                if r >= speed:
-                    bandwidth = speeds[speed]
-                    break
-        else:
-            bandwidth = 100_000
-        title = (
-            f"#EXT-X-STREAM-INF:CLOSED-CAPTIONS=NONE,BANDWIDTH={bandwidth},NAME={res}\n"
-        )
-        link = f"{output[res]}\n"
-        link_str += title + link
-    with open("stream.m3u8", "w") as f:
-        f.write(link_str)
-    return link_str
-
-
-def api_formatted(output, api):
-    """Formats the output to json if the endpoint is /api"""
-    if api:
-        if type(output) == dict:
-            return output
-        return {"Error": output}
-    if type(output) == dict:
-        if len(output) == 1:
-            return next(iter(output.values()))
-        return make_m3u8(output)
-    return output
-
-
-def query_handler(args, api):
+# Reads the URL parameters and redirects to Streamlink.
+def query_handler(args):
     """Checks and tests arguments before serving request"""
-    if args:
-        query = args[0]
-        if not query:
-            message = "streaming-ip string is empty"
-            return api_formatted(message, api)
+    if not args.get("streaming-ip"):
+        return "You didn't give any URL."
 
-        valid = validators.url(query)
-        if not valid:
-            message = "The URL you've entered is not valid."
-            return api_formatted(message, api)
-
-        quality = args[1]
-        if quality == "":
-            message = "Empty quality string"
-            return api_formatted(message, api)
-
-        stream_obj = Fetch(query, quality)
-        streams = stream_obj.filtered_streams()
-        return api_formatted(streams, api)
+    # for dacast, be warned we have MULTIPLE parameters. Get it if exists
+    if args.get("provider"):
+        valid = validators.url(args.get("streaming-ip"))
+        url = args.get("streaming-ip") + "&provider=" + args.get('provider')
+        return get_streams(url) if valid else "The URL you've entered is not valid."
     else:
-        message = "No queries provided. Nothing to do."
-        return api_formatted(message, api)
+        valid = validators.url(args.get("streaming-ip"))
+        return get_streams(args.get("streaming-ip")) if valid else "The URL you've entered is not valid."
 
 
 @app.get("/")
@@ -146,19 +81,13 @@ def index(request):
 
 @app.get("/query")
 def home(request, url: str, quality: str = None):
-    answer = [url, quality]
-    response = query_handler(answer, False)
-    if response.startswith("#EXTM3U"):
-        return send_file("stream.m3u8")
-    elif response.startswith("http"):
-        return redirect(response)
-    else:
+    response = query_handler(request.args)
+    valid2 = validators.url(response)
+    if response is None or not valid2:
         return response
 
+    return response if request.args.get("noredirect") == "yes" else redirect(response)
 
-@app.get("/api")
-def api(request, url: str):
-    return query_handler(url, True)
 
 if __name__ == '__main__':
     app.run(threaded=False, port=5000)
