@@ -12,18 +12,18 @@ from streamlink import (
 from streamlink.stream import DASHStream
 
 
-class Fetch:
+def get_streams(self):
     """
     Get data streams
     Returns: (links), Error string
     """
     try:
-        streams = streamlink.streams(query).items()
+        streams = streamlink.streams(self.query).items()
         if not streams:
             return "No streams found."
         
         for quality, link in streams:
-            if query.__contains__('dailymotion.com') or query.__contains__('dai.ly'):
+            if self.query.__contains__('dailymotion.com') or self.query.__contains__('dai.ly'):
                 url = link.to_manifest_url()
                 if url.__contains__('https://www.dailymotion.com/cdn/live/video/'):
                     response = urllib.request.urlopen(url)
@@ -61,17 +61,10 @@ class Fetch:
 # Reads the URL parameters and redirects to Streamlink.
 def query_handler(args):
     """Checks and tests arguments before serving request"""
-    if not args.get("streaming-ip"):
+    if not args[0]:
         return "You didn't give any URL."
-
-    # for dacast, be warned we have MULTIPLE parameters. Get it if exists
-    if args.get("provider"):
-        valid = validators.url(args.get("streaming-ip"))
-        url = args.get("streaming-ip") + "&provider=" + args.get('provider')
-        return get_streams(url) if valid else "The URL you've entered is not valid."
-    else:
-        valid = validators.url(args.get("streaming-ip"))
-        return get_streams(args.get("streaming-ip")) if valid else "The URL you've entered is not valid."
+        valid = validators.url(args[0])
+        return get_streams(args[0]) if valid else "The URL you've entered is not valid."
 
 
 @app.get("/")
@@ -80,13 +73,13 @@ def index(request):
 
 
 @app.get("/query")
-def home(request, url: str, quality: str = None):
-    response = query_handler(request.args)
+def home(request, url: str):
+    response = query_handler(url)
     valid2 = validators.url(response)
     if response is None or not valid2:
         return response
 
-    return response if request.args.get("noredirect") == "yes" else redirect(response)
+    return response if request.args[1] == "yes" else redirect(response)
 
 
 if __name__ == '__main__':
