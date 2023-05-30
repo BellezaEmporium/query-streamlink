@@ -7,7 +7,7 @@ query-streamlink est une application web Python destinée à recracher les liens
 
 ## Faire un don au projet Streamlink
 
-query-streamlink doit son existence au projet Streamlink. Pour soutenir leur développement continu, envisagez de faire un don sur leur [Open Collective page] (https://opencollective.com/streamlink).
+query-streamlink doit son existence au projet Streamlink. Pour soutenir leur développement continu, envisagez de faire un don sur leur [Open Collective page](https://opencollective.com/streamlink).
 
 ## Comment ça marche
 
@@ -15,7 +15,7 @@ Le fonctionnement de query-streamlink repose sur l'envoi de requêtes à Streaml
 
 ## Légalité
 
-Oui, query-streamlink est un programme légal, car son but est de servir de passerelle vers [Streamlink] (https://github.com/streamlink/streamlink). La seule utilisation illégale serait s'il était employé à des fins malveillantes, dans ce cas je ne serais pas tenu pour responsable.
+Oui, query-streamlink est un programme légal, car son but est de servir de passerelle vers [Streamlink](https://github.com/streamlink/streamlink). La seule utilisation illégale serait s'il était employé à des fins malveillantes, dans ce cas je ne serais pas tenu pour responsable.
 
 ### Sites web pris en charge
 
