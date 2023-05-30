@@ -19,7 +19,7 @@ query-streamlink n'agit qu'en tant qu'intermédiaire entre Streamlink et l'utili
 
 ## Attendez... ce programme est-il légal ?
 
-Oui, ce programme est légal, puisqu'il à été conçu comme un intermédiaire à [Streamlink](https://github.com/streamlink/streamlink). Cependant, il peut le devenir si vous décidez de déformer le programme à des fins malicieuses, lequel cas je ne suis point responsable.
+Oui, ce programme est légal, puisqu'il à été conçu comme un intermédiaire à [Streamlink](https://github.com/streamlink/streamlink). Cependant, il peut le devenir si vous décidez de déformer le programme à des fins malicieuses, auquel cas je ne me tiens pas responsable.
 
 ### Sites supportés :
 
