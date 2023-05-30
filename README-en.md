@@ -1,54 +1,60 @@
 # query-streamlink
+query-streamlink is a Python webapp destined to spit out links given by all sources supported by Streamlink.
 
-A Python webapp that is designed to redirect the end user to the stream they want, backed up by Streamlink.
+## Alternative Programs
 
-## Alternative programs
+- [liveproxy](https://github.com/back-to/liveproxy): If you are a supporter of Streamlink, show your support by donating to the Streamlink project!
 
-- back-to's liveproxy (https://github.com/back-to/liveproxy). He's a streamlink member, so show him support by actually donating to the Streamlink project !
+## Donating to the Streamlink Project
 
-## Donating to the Streamlink project
+query-streamlink owes its existence to the Streamlink project. To support their ongoing development, consider making a donation on their [Open Collective page](https://opencollective.com/streamlink).
 
-This program is made possible thanks to Streamlink.
+## How It Works
 
-To support them, please make a donation to their [Open Collective page](https://opencollective.com/streamlink)
+The functioning of query-streamlink relies on making requests to Streamlink based on the URL provided by the user. It then retrieves a response containing a URL that can be used by most popular media players. This program acts as a bridge between the end user and Streamlink, ensuring smooth streaming experiences.
 
-## How it works
+## Legality
 
-This program works by asking Streamlink, based on the URL you give, to answer you with an URL that can be used for (almost !) all known players to this date. 
-query-streamlink simply acts like an intermediary/redirector between the end-user and Streamlink.
+Yes, query-streamlink is a legal program, as its purpose is to serve as a bridge to [Streamlink](https://github.com/streamlink/streamlink). The only unlawful use would be if it were employed for malicious purposes, in this case I won't be held responsible.
 
-## Wait... is that legal ?
+### Supported Websites
 
-Yes, this program is legal, since it is designed as a bridge for [Streamlink](https://github.com/streamlink/streamlink), the only illegal thing you might do with it is hijacking the main program for malicious causes, in this case I won't be held responsible.
+query-streamlink supports a wide range of websites compatible with [Streamlink](https://streamlink.github.io/plugin_matrix.html). However, please be cautious of potential geolocation issues with certain services.
 
-### Supported websites
+## Query Parameters
 
-Basically any website that [Streamlink](https://streamlink.github.io/plugin_matrix.html) supports (beware of geo-location issues for some services)
+- `streaming-ip` (required): The URL of the stream for which you need the link.
 
-## Query parameters
+## Local Deployment
 
-- streaming-ip (mandatory) : The URL of the stream you need the link to.
+To run query-streamlink locally, simply execute the following command: `python main.py`.
 
-## How to load the program locally
+## Remote Deployment of query-streamlink
 
-Simple: launch the program by using ```python main.py```
+- Heroku: [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FLaneSh4d0w%2Fquery-streamlink) (thanks to [@adrianpaniagualeon](https://github.com/adrianpaniagualeon))
+- Other services (repl / glitch...): For other services, check if they require specific configurations. In most cases, forking the program to your own account should be sufficient to make it work.
 
-## How to deploy query-streamlink on a remote service
+## Contributing
 
-- Heroku : [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FLaneSh4d0w%2Fquery-streamlink) (kudos to [@adrianpaniagualeon](https://github.com/adrianpaniagualeon))
-- Other services (repl / glitch...) :
-For the other kinds, see if they have specific configurations, but a simple fork of the program using your account is sufficient to make it work !
+Contributions to Query-Streamlink are welcome! If you want to contribute to the project, please follow these steps:
 
-## Thank you
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them with descriptive commit messages.
+4. Push your changes to your forked repository.
+5. Submit a pull request to the main repository.
 
--  [@keystroke3](https://github.com/keystroke3) for the support and rework of the application.
+## Acknowledgements
 
-- The IPTV peepz that were involved in making this possible (special thanks to Nintendocustom / Dum4G)
-
-- The testers
-
-- The Streamlink members and contributors for this amazing tool that is.
+- [@keystroke3](https://github.com/keystroke3) for the support and improvements made to the app.
+- The IPTV community members who contributed to making this project possible (special thanks to Nintendocustom / Dum4G).
+- The testers who provided valuable feedback during the development process.
+- The Streamlink members and contributors for their incredible tool.
 
 ## Available websites (as of 30/05/2023)
 
 There's lots of forks of query-streamlink out in the wild to play with !
+
+## License
+
+Query-Streamlink is licensed under the [BSD-2 Clause license](./LICENSE).
