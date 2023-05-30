@@ -48,7 +48,7 @@ Para ejecutar query-streamlink localmente, simplemente ejecute el siguiente coma
 
 ## Agradecimientos
 
-- @keystroke3](https://github.com/keystroke3) por el soporte y las mejoras realizadas en la aplicación.
+- [@keystroke3](https://github.com/keystroke3) por el soporte y las mejoras realizadas en la aplicación.
 - A los miembros de la comunidad IPTV que han contribuido a hacer posible este proyecto (gracias especialmente a Nintendocustom / Dum4G).
 - Los testeadores que aportaron valiosos comentarios durante el proceso de desarrollo.
 - Los miembros y colaboradores de Streamlink por su increíble herramienta.
