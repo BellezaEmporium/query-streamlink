@@ -15,9 +15,3 @@ streamlink = "^2.2.0"
 validators = "^0.20.0"
 Flask-Limiter = "^3.3.1"
 [tool.poetry.dev-dependencies]
-
-flask==2.3.2
-gunicorn==20.1.0
-git+https://github.com/BellezaEmporium/streamlink@master
-validators==0.20.0
-Flask-Limiter==3.3.1
