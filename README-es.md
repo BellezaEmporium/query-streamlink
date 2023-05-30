@@ -1,49 +1,50 @@
 # query-streamlink
 
-Una aplicación python destinada a redireccionar al usuario final en el flujo de video deseado, funcionando con Streamlink.
+Una aplicación web en Python diseñada para redirigir al usuario final al stream que desee, respaldado por Streamlink.
 
-## Contribuir al proyecto Streamlink:
+## Programas alternativos
 
-Este programa es posible gracias a Streamlink.
+- [liveproxy](https://github.com/back-to/liveproxy): Es miembro de Streamlink, ¡así que demuéstrale tu apoyo donando al proyecto Streamlink!
 
-Para contribuir en este proyecto, por favor haz una donación en su [página Open Collective](https://opencollective.com/streamlink)
+## Donando al proyecto Streamlink
 
-## Como iniciar este programa:
+Este programa ha sido creado gracias a Streamlink. Para apoyarles, por favor haz una donación en su [página de Open Collective](https://opencollective.com/streamlink).
 
-- Localmente :
-```python main.py```
+## Cómo funciona
 
-- Servidor (repl / heroku etc...) :
-[@adrianpaniagualeon](https://github.com/adrianpaniagualeon) hizo un boton que permite una creación automática del programa directamente en Heroku, gracias a el.
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FLaneSh4d0w%2Fquery-streamlink)
+Este programa funciona solicitando a Streamlink, basándose en la URL que le facilites, una respuesta con una URL que pueda ser utilizada por (¡casi!) todos los reproductores conocidos hasta la fecha. Query-streamlink simplemente actúa como un intermediario/redirector entre el usuario final y Streamlink.
 
-Para los otros servicios del mismo tipo, un fork del programa debe ser suficiente para hacerlo funcionar, sin embargo, verifica con el servidor las configuraciones específicas.
+## Espera... ¿es legal?
 
-## Como eso funciona:
+Sí, este programa es legal, ya que está diseñado como puente para [Streamlink](https://github.com/streamlink/streamlink). Lo único ilegal que podrías hacer con él es secuestrar el programa principal por causas maliciosas.
 
-Este programa funciona por preguntar Streamlink, y basado en la URL, repuesta con una URL de flujo video que puede utilizar en (casi!) todos los reproductores de video conocido ahora.
-query-streamlink solo es un intermediario entre el usuario final y Streamlink.
+### Sitios web soportados
 
-## Sitios soportados:
+Básicamente cualquier sitio web que soporte [Streamlink](https://streamlink.github.io/plugin_matrix.html) (cuidado con los problemas de geolocalización de algunos servicios).
 
-Prácticamente todos los sitios que [Streamlink](https://streamlink.github.io/plugin_matrix.html) soporte (atención con los problemas de restricción geográfica con unas servicios)
+## Parámetros de consulta
 
-## Opciones :
+- `streaming-ip` (obligatorio): La URL del stream al que necesita el enlace.
 
-streaming-ip (obligatorio) : La URL del stream que quiere ver.
+## Cómo cargar el programa localmente
 
-## Gracias:
+Simple: lanza el programa usando `python main.py`.
 
--  [@keystroke3](https://github.com/keystroke3) por el soporte y el rehacimiento de la aplicación.
+## Cómo desplegar query-streamlink en un servicio remoto
 
-- Las personas del grupo @iptv-org que eran implícito (especialmente Nintendocustom / Dum4G)
+- Heroku: [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FLaneSh4d0w%2Fquery-streamlink) (gracias a [@adrianpaniagualeon](https://github.com/adrianpaniagualeon))
+- Otros servicios (repl / glitch...): ¡Para los otros servicios, mira si tienen configuraciones específicas, pero un simple fork del programa usando tu cuenta es suficiente para hacerlo funcionar!
 
-- Los probadores
+## Gracias
 
-- Los miembros y contribuyentes de Streamlink para este magnificente programa.
+- [@keystroke3](https://github.com/keystroke3) por el apoyo y la reelaboración de la aplicación.
+- Los IPTV peepz que estuvieron involucrados en hacer esto posible (agradecimientos especiales a Nintendocustom / Dum4G).
+- Los testeadores.
+- Los miembros y colaboradores de Streamlink por esta increíble herramienta.
 
-## Sitios disponibles (al 22/11/2021):
+## Sitios web disponibles (a 15/08/2022)
 
-Aquí son las sitios web reconocidos que usan query-streamlink en el Internet:
+Aquí están los sitios web disponibles que utilizan query-streamlink en Internet:
 
-[FullSpeed - DCT EU (dct-infra)](http://free.fullspeed.tv/)
+- [FullSpeed - DCT EU (dct-infra)](http://free.fullspeed.tv/)
+- ... ¡así como todas las demás bifurcaciones disponibles en GitHub!
