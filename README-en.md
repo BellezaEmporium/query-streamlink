@@ -49,9 +49,8 @@ For the other kinds, see if they have specific configurations, but a simple fork
 
 - The Streamlink members and contributors for this amazing tool that is.
 
-## Available websites (as of 15/08/2022)
+## Available websites (as of 30/05/2023)
 
 Here are the actual recensed websites that uses query-streamlink on the Internet :
 
-[FullSpeed - DCT EU (dct-infra)](http://free.fullspeed.tv/)
-... as well as all the other forks available on GitHub !
+There's lots of forks of query-streamlink out in the wild to play with !
