@@ -2,6 +2,10 @@
 
 Une application sous Python destinée à renvoyer à l'utilisateur final le flux vidéo voulu, fonctionnant avec Streamlink.
 
+## Programmes alternatifs
+
+- Le programme [liveproxy](https://github.com/back-to/liveproxy) codé par back-to. Il est un membre actif du projet Streamlink, donc n'hésitez pas à l'aider en donnant au projet Streamlink !
+
 ## Donner au projet Streamlink
 
 Ce programme est possible grâce à Streamlink.
@@ -13,9 +17,13 @@ Pour les soutenir, veuillez effectuer une donation sur leur [page Open Collectiv
 Ce programme fonctionne en demandant à Streamlink, en se basant sur l'URL donnée, un lien menant au flux vidéo, lisible par (quasiment !) tous les lecteurs connus à ce jour.
 query-streamlink n'agit qu'en tant qu'intermédiaire entre Streamlink et l'utilisateur final.
 
+## Attendez... ce programme est-il légal ?
+
+Oui, ce programme est légal, puisqu'il à été conçu comme un intermédiaire à [Streamlink](https://github.com/streamlink/streamlink). Cependant, il peut le devenir si vous décidez de déformer le programme à des fins malicieuses, lequel cas je ne suis point responsable.
+
 ### Sites supportés :
 
-Tout site internet supporté officiellement par [Streamlink](https://streamlink.github.io/plugin_matrix.html) (attention, certains sites sont restreints géographiquement)
+Quasiment tout les sites Internet supporté officiellement par [Streamlink](https://streamlink.github.io/plugin_matrix.html) (attention, certains sites sont restreints géographiquement)
 
 ## Paramètres :
 
@@ -40,8 +48,6 @@ C'est simple : il vous suffit de lancer le programme en écrivant ```python main
 
 - Les membres et contributeurs de Streamlink pour ce superbe logiciel.
 
-### Sites disponibles (au 28/04/2022)
+### Sites disponibles (au 30/05/2023)
 
-Voici les sites utilisant ce programme en ligne à ce jour : 
-
-[FullSpeed - DCT EU (dct-infra)](http://free.fullspeed.tv/)
+Il y a une très grande quantité de forks disponibles de query-streamlink afin que vous puissiez jouer avec !
