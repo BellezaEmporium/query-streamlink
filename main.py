@@ -9,8 +9,8 @@ app = Flask(__name__)
 
 # Create a rate limiter to control the number of requests per hour from each IP address.
 limiter = Limiter(
-    app,
-    key_func=get_remote_address,
+    get_remote_address,
+    app=app,
     default_limits=["100 per hour"],
     storage_uri="memory://"
 )
