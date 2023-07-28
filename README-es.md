@@ -24,7 +24,9 @@ Básicamente cualquier sitio web que soporte [Streamlink](https://streamlink.git
 
 ## Parámetros de consulta
 
-- `streaming-ip` (obligatorio): La URL del stream al que necesita el enlace.
+- `url` (obligatorio): La URL del stream al que necesita el enlace.
+- `no_redirect` (opcional, valor : null) : Si no necesites ser redirigido en el sitio.
+- `quality` (opcional, valor : best) : Si necesitas poner un parametro de calidad;
 
 ## Despliegue local
 
