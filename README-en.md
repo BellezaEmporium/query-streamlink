@@ -15,7 +15,7 @@ The functioning of query-streamlink relies on making requests to Streamlink base
 
 ## Legality
 
-Yes, query-streamlink is a legal program, as its purpose is to serve as a bridge to [Streamlink](https://github.com/streamlink/streamlink). The only unlawful use would be if it were employed for malicious purposes, in this case I won't be held responsible.
+query-streamlink is a legal program, as its purpose is to serve as a bridge to [Streamlink](https://github.com/streamlink/streamlink). The only unlawful use would be if it were employed for malicious purposes, which in that case I can't be held responsible.
 
 ### Supported Websites
 
