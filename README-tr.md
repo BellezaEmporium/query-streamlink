@@ -21,7 +21,9 @@ Temel olarak [Streamlink](https://streamlink.github.io/plugin_matrix.html) taraf
 
 ## Sorgu parametreleri:
 
-- stream-ip (zorunlu) : Bağlantıya ihtiyacınız olan akışın URL'si.
+- `url` (zorunlu): Bağlantıya ihtiyacınız olan akışın URL'si.
+- `no_redirect` (isteğe bağlı, değer : null) : Sitede yönlendirilmeye ihtiyacınız yoksa.
+- `quality` (isteğe bağlı, değer : best) : Bir kalite parametresi ayarlamanız gerekiyorsa.
 
 ## Program yerel olarak nasıl yüklenir :
 
