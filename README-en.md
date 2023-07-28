@@ -23,7 +23,9 @@ query-streamlink supports a wide range of websites compatible with [Streamlink](
 
 ## Query Parameters
 
-- `streaming-ip` (required): The URL of the stream for which you need the link.
+- `url` (required): The URL of the stream for which you need the link.
+- `no_redirect` (optional, default : null) : If you do not need to be redirected into the website stream.
+- `quality` (optional, default : best) : If you need a specific quality setting.
 
 ## Local Deployment
 
