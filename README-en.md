@@ -31,7 +31,7 @@ To run query-streamlink locally, simply execute the following command: `python m
 
 ## Remote Deployment of query-streamlink
 
-- Heroku: [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FLaneSh4d0w%2Fquery-streamlink) (thanks to [@adrianpaniagualeon](https://github.com/adrianpaniagualeon))
+- Heroku: [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FBellezaEmporium%2Fquery-streamlink) (thanks to [@adrianpaniagualeon](https://github.com/adrianpaniagualeon))
 - Other services (repl / glitch...): For other services, check if they require specific configurations. In most cases, forking the program to your own account should be sufficient to make it work.
 
 ## Contributing
