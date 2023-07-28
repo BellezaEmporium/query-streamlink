@@ -14,10 +14,9 @@ query-streamlink debe su existencia al proyecto Streamlink. Para apoyar su desar
 
 Este programa funciona solicitando a Streamlink, basándose en la URL que le facilites, una respuesta con una URL que pueda ser utilizada por (¡casi!) todos los reproductores conocidos hasta la fecha. Query-streamlink simplemente actúa como un intermediario/redirector entre el usuario final y Streamlink, garantizando experiencias de reproducción sin problemas.
 
+## Legalidad
 
-## Espera... ¿es legal?
-
-Sí, este programa es legal, ya que está diseñado como puente para [Streamlink](https://github.com/streamlink/streamlink). El único uso ilegal sería si se empleara con fines maliciosos, en este caso no me haré responsable.
+query-streamlink es legal, ya que está diseñado como puente para [Streamlink](https://github.com/streamlink/streamlink). El único uso ilegal sería si se empleara con fines maliciosos, y en este caso no puede ser responsable.
 
 ### Sitios web soportados
 
