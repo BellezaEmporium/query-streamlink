@@ -32,7 +32,7 @@ Para ejecutar query-streamlink localmente, simplemente ejecute el siguiente coma
 
 ## Despliegue remoto
 
-- Heroku: [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FLaneSh4d0w%2Fquery-streamlink) (gracias a [@adrianpaniagualeon](https://github.com/adrianpaniagualeon))
+- Heroku: [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FBellezaEmporium%2Fquery-streamlink) (gracias a [@adrianpaniagualeon](https://github.com/adrianpaniagualeon))
 - Otros servicios (repl / glitch...): Para otros servicios, comprueba si requieren configuraciones específicas. En la mayoría de los casos, bifurcar el programa usando tu propia cuenta debería ser suficiente para hacerlo funcionar.
 
 ## Contribuir
