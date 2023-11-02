@@ -1,7 +1,7 @@
 # query-streamlink
 A Python webapp that is destined to spit out links given by all sources supported by Streamlink.
 
-## Language / Langue / Idioma / Dilini
+## Language / Langue / Idioma / Dilini / Язык
 
 - [English](./README-en.md) (README reviewed and modified by LS, T, DI, FD)
 
