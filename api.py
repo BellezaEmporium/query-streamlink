@@ -1,62 +1,34 @@
 import streamlink
-from streamlink import (
-    PluginError
-)
+from streamlink import NoPluginError, PluginError
+from streamlink.stream import DASHStream
+import urllib.request
 
 
-class Fetch:
-    """
-    Gets data from host, filters it and returns streams
-    (query: str, quality: str,list,tuple)
-    """
-
-    def __init__(self, query, quality):
-        self.query = query
-        if not quality:
-            quality = "best"
-        if "," in quality:
-            self.qualities = quality.split(",")
+def get_streams(query, quality="best"):
+    try:
+        streams = streamlink.streams(query).items()
+        if not streams:
+            return "No streams found."
+        for stream_quality, link in streams:
+            if quality is not None and quality != stream_quality:
+                continue
+            if 'dailymotion.com' in query or 'dai.ly' in query:
+                url = link.to_manifest_url()
+                if 'https://www.dailymotion.com/cdn/live/video/' in url:
+                    response = urllib.request.urlopen(url)
+                    data = response.read().decode('utf-8')
+                    replacements = {'live-3': 'live-0', 'live-2': 'live-0', 'live-1': 'live-0'}
+                    for key in replacements:
+                        if key in data:
+                            l0_link = link.to_url()
+                            l0_replace = l0_link.replace('live-0', replacements[key])
+                            return l0_replace
+                    return link.to_url()
+                else:
+                    return url
+            if isinstance(link, DASHStream) or ("best" in stream_quality and "chunklist" in link.to_url()) or "live" in stream_quality or "http" in stream_quality:
+                return link.to_url()
         else:
-            self.qualities = [quality]
-
-    def get_streams(self):
-        """
-        Get data streams and resolutions
-        Returns: (links, resolution), Error string
-        """
-        try:
-            links = streamlink.streams(self.query)
-            res = list(links.keys())
-            return links, res
-        except Exception:
-            # returns exceptions raised by streamlink
-            raise
-
-    def filtered_streams(self):
-        """
-        Filter streams according to specified quality.
-        Default quality: best
-        Returns: {quality: stream_url}
-        """
-        try:
-            payload = self.get_streams()
-            streams, resolutions = payload
-            if not streams:
-                raise ValueError
-            res_str = ",".join(resolutions)
-        except PluginError as pe:
-            return str(pe)
-        except ValueError:
-            return f"Could not get the link, Streamlink couldn't read {self.query}"
-        except TypeError:
-            return payload
-
-        if "best" in self.qualities:
-            next((x for x in res_str if x == "best"), None)
-        elif "worst" in self.qualities:
-            next((x for x in res_str if x == "worst"), None)
-
-        for q in self.qualities:
-            if q not in resolutions:
-                return f"Invalid quality {q}. Available qualities are: {res_str}"
-        return {quality: streams[quality].url for quality in self.qualities}
+            return link.to_manifest_url()
+    except (ValueError, NoPluginError, PluginError, Exception) as ex:
+        return f"An error occurred: {ex}"

@@ -1,5 +1,5 @@
-flask==2.0.2
-gunicorn==20.1.0
-streamlink==3.0.3
-validators==0.18.2
-Flask-Limiter==1.4
+flask==2.3.2
+gunicorn==21.2.0
+git+https://github.com/BellezaEmporium/streamlink@master
+validators==0.20.0
+Flask-Limiter==3.3.1
