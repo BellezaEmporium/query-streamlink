@@ -1,5 +1,6 @@
 # query-streamlink
-A Python webapp that is destined to spit out links given by all sources supported by Streamlink.
+A bridge between Streamlink, Internet resources and your player.
+This server aims to send the information to Streamlink via its Python API and redirect to the resource easily.
 
 ## Language / Langue / Idioma / Dilini / Язык
 
